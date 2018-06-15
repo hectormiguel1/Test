@@ -89,6 +89,7 @@ public class Controller {
     @FXML
     public void setUpdateButtonClicked() {
         try {
+            location = new Location();
             weather = new Weather(location.getLatitude(), location.getLongitude());
 
             precipitationTextField.setText(String.valueOf(weather.getTodayPrecipitation()));

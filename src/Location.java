@@ -53,10 +53,10 @@ public class Location {
     }
 
     public double getLatitude() {
-        return Double.parseDouble(new DecimalFormat("##.##").format(latitude));
+        return Double.parseDouble(new DecimalFormat("##.####").format(latitude));
     }
 
     public double getLongitude() {
-        return Double.parseDouble(new DecimalFormat("##.##").format(longitude));
+        return Double.parseDouble(new DecimalFormat("##.####").format(longitude));
     }
 }

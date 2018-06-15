@@ -23,8 +23,8 @@ public class Weather {
     private Season season;
 
     public Weather(double latitude, double longitude){
-        this.latitude = Double.parseDouble(new DecimalFormat("##.##").format(latitude));
-        this.longitude = Double.parseDouble(new DecimalFormat("##.##").format(longitude));
+        this.latitude = Double.parseDouble(new DecimalFormat("##.####").format(latitude));
+        this.longitude = Double.parseDouble(new DecimalFormat("##.####").format(longitude));
         currentWeather();
         calculateSeason();
     }
