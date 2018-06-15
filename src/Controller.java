@@ -1,5 +1,6 @@
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.xml.sax.SAXException;
@@ -39,6 +40,9 @@ public class Controller {
     @FXML
     Button closeButton;
 
+    @FXML
+    Label lastUpdatedLabel;
+
     //inititalize values and API connections.
     public void initialize(){
         latitudeTextField.setDisable(true);
@@ -65,6 +69,8 @@ public class Controller {
            precipitationTextField.setText(String.valueOf(weather.getTodayPrecipitation()));
 
            humidityTExtField.setText(String.valueOf(weather.getCurrentHumidity()));
+
+           lastUpdatedLabel.setText("Last Updated On: " + weather.getLastUpdated());
        }catch (Exception e){
           if(e instanceof IOException){
               JOptionPane.showMessageDialog(null,"ERROR CONNECTING TO INTERNET", "ERROR CONNECTING",0);
@@ -88,6 +94,9 @@ public class Controller {
             precipitationTextField.setText(String.valueOf(weather.getTodayPrecipitation()));
 
             humidityTExtField.setText(String.valueOf(weather.getCurrentHumidity()));
+
+            lastUpdatedLabel.setText("Last Updated On : " + weather.getCurrentTime());
+
         }catch (Exception e){
             if(e instanceof IOException){
                 JOptionPane.showMessageDialog(null,"ERROR CONNECTING TO INTERNET", "ERROR CONNECTING",0);

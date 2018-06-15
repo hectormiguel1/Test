@@ -47,18 +47,18 @@
                   <Font size="23.0" />
                </font>
             </Text>
-            <Label alignment="CENTER_RIGHT" layoutX="127.0" layoutY="254.0" prefHeight="28.0" prefWidth="164.0" text="Precipitation:">
+            <Label alignment="CENTER_RIGHT" layoutX="124.0" layoutY="234.0" prefHeight="28.0" prefWidth="164.0" text="Precipitation:">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField fx:id="precipitationTextField" layoutX="297.0" layoutY="255.0" prefHeight="1.0" prefWidth="120.0" />
-            <Label alignment="CENTER_RIGHT" layoutX="127.0" layoutY="293.0" prefHeight="28.0" prefWidth="164.0" text="Humidity:">
+            <TextField fx:id="precipitationTextField" layoutX="294.0" layoutY="235.0" prefHeight="1.0" prefWidth="120.0" />
+            <Label alignment="CENTER_RIGHT" layoutX="124.0" layoutY="273.0" prefHeight="28.0" prefWidth="164.0" text="Humidity:">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField fx:id="humidityTExtField" layoutX="297.0" layoutY="295.0" prefHeight="1.0" prefWidth="120.0" />
+            <TextField fx:id="humidityTExtField" layoutX="294.0" layoutY="275.0" prefHeight="1.0" prefWidth="120.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="-1.0" layoutY="354.0" stroke="BLACK" strokeType="INSIDE" width="559.0" />
             <Button fx:id="updateButton" layoutX="28.0" layoutY="439.0" mnemonicParsing="false" onMouseClicked="#setUpdateButtonClicked" prefHeight="102.0" prefWidth="199.0" text="Update">
                <font>
@@ -70,6 +70,7 @@
                   <Font size="28.0" />
                </font>
             </Button>
+            <Label fx:id="lastUpdatedLabel" alignment="CENTER" layoutX="7.0" layoutY="329.0" prefHeight="15.0" prefWidth="542.0" textAlignment="CENTER" />
          </children></AnchorPane>
   </content>
 </TitledPane>

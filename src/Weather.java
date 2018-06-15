@@ -18,6 +18,8 @@ public class Weather {
     private double longitude;
     private double todayPrecipitation;
     private double currentHumidity;
+    private String lastUpdated;
+    private String currentTime;
     private Season season;
 
     public Weather(double latitude, double longitude){
@@ -44,6 +46,10 @@ public class Weather {
                     .getChildNodes().item(0).getNodeValue());
             currentHumidity = Double.parseDouble(document.getElementsByTagName("humidity").item(0)
                     .getChildNodes().item(0).getNodeValue());
+            lastUpdated = document.getElementsByTagName("current").item(0).
+                    getChildNodes().item(1).getChildNodes().item(0).getNodeValue();
+            currentTime = document.getElementsByTagName("location").item(0).getChildNodes().
+                    item(7).getChildNodes().item(0).getNodeValue();
 
         } catch (ParserConfigurationException | SAXException | IOException e) {
         }
@@ -74,5 +80,13 @@ public class Weather {
 
     public Season getSeason() {
         return season;
+    }
+
+    public String getLastUpdated() {
+        return lastUpdated;
+    }
+
+    public String getCurrentTime() {
+        return currentTime;
     }
 }
