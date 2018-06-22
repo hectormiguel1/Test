@@ -13,6 +13,10 @@ public class GUI extends Application {
             stage.setResizable(false);
             stage.setTitle("Solar Panel Control Center");
             stage.show();
+            do{
+                Runnable databaseUpload = new DBConnect();
+                new Thread(databaseUpload).start();
+            }while(stage.isShowing());
         }catch (Exception e){
             System.out.println("Test");
         }
