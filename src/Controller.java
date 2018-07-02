@@ -4,8 +4,8 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.xml.sax.SAXException;
 
@@ -39,7 +39,6 @@ public class Controller {
 
     @FXML
     Button updateButton;
-
 
     @FXML
     Button closeButton;
@@ -152,7 +151,29 @@ public class Controller {
            fivePmCheckBox.setSelected(irrigation.getIrrigationCompleted()[2]);
            elevenAmCheckBox.setSelected(irrigation.getIrrigationCompleted()[1]);
            elevenPmCheckBox.setSelected(irrigation.getIrrigationCompleted()[3]);
-           commentLabel.setText(irrigation.getComment());
+           switch(irrigation.getComment()){
+               case 1:{
+                   commentLabel.setText("Skipping irrigation for" + irrigation.getNextIrrigationScheduled().toString() + " due to high humidity!");
+                   commentLabel.setTextFill(Color.RED);
+                   break;
+               }
+               case 2: {
+                   commentLabel.setText("Skipping irrigation for the rest of the day because precipitation already exceeds precipitation threshold!");
+                   commentLabel.setTextFill(Color.YELLOW);
+                   break;
+               }
+               case 3:{
+                   commentLabel.setText("Irrigating for " + irrigation.getNextIrrigationScheduled().toString());
+                   commentLabel.setTextFill(Color.GREEN);
+                   break;
+               }
+               default:{
+                   commentLabel.setText("Irrigation will continue as scheduled for " + irrigation.getNextIrrigationScheduled().toString());
+                   commentLabel.setTextFill(Color.GREEN);
+                   break;
+               }
+           }
+
        }catch (Exception e){
           if(e instanceof IOException){
               JOptionPane.showMessageDialog(null,"ERROR CONNECTING TO INTERNET", "ERROR CONNECTING",0);
@@ -214,7 +235,28 @@ public class Controller {
         fivePmCheckBox.setSelected(irrigation.getIrrigationCompleted()[2]);
         elevenAmCheckBox.setSelected(irrigation.getIrrigationCompleted()[1]);
         elevenPmCheckBox.setSelected(irrigation.getIrrigationCompleted()[3]);
-        commentLabel.setText(irrigation.getComment());
+        switch(irrigation.getComment()){
+            case 1:{
+                commentLabel.setText("Skipping irrigation for " + irrigation.getNextIrrigationScheduled().toString() + " due to high humidity!");
+                commentLabel.setTextFill(Color.RED);
+                break;
+            }
+            case 2: {
+                commentLabel.setText("Skipping irrigation for the rest of the day because precipitation already exceeds precipitation threshold!");
+                commentLabel.setTextFill(Color.YELLOW);
+                break;
+            }
+            case 3:{
+                commentLabel.setText("Irrigating for " + irrigation.getNextIrrigationScheduled().toString());
+                commentLabel.setTextFill(Color.GREEN);
+                break;
+            }
+            default:{
+                commentLabel.setText("Irrigation will continue as scheduled for " + irrigation.getNextIrrigationScheduled().toString());
+                commentLabel.setTextFill(Color.GREEN);
+                break;
+            }
+        }
 
     }
 

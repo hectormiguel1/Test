@@ -13,14 +13,15 @@ public class Irrigation {
     private Weather weather;
     private LocalDate todayDate = LocalDate.now();
     private Boolean[] irrigationCompleted = {false,false,false,false};
+    private LocalTime nextIrrigationScheduled;
+
 
 
     public Irrigation(Weather currentWeather){
         weather = currentWeather;
     }
 
-    public String getComment(){
-        LocalTime nextIrrigationScheduled;
+    public int getComment(){
         time = LocalTime.now();
         if(time.compareTo(FIVEAM) == -1)
             nextIrrigationScheduled = FIVEAM;
@@ -34,9 +35,9 @@ public class Irrigation {
             nextIrrigationScheduled = time;
 
         if(weather.getCurrentHumidity() > humidityThreshold || weather.getCurrentHumidity() == humidityThreshold )
-            return "Skipping irrigation for " + nextIrrigationScheduled.toString() + " due to high humidity!";
+            return 1;
         else if(weather.getTodayPrecipitation() > precipitationThreshold || weather.getTodayPrecipitation() == precipitationThreshold)
-            return "Skipping irrigation for the rest of the day because precipitation already exceeds precipitation threshold!";
+            return 2;
         else if(nextIrrigationScheduled.equals(FIVEAM) || nextIrrigationScheduled.equals(ELEVENAM) || nextIrrigationScheduled.equals(FIVEPM) || nextIrrigationScheduled.equals(ELEVENPM)){
             if(nextIrrigationScheduled.equals(FIVEAM) && (weather.getTodayPrecipitation() < precipitationThreshold && weather.getCurrentHumidity() < humidityThreshold))
                 irrigationCompleted[0] = true;
@@ -46,10 +47,10 @@ public class Irrigation {
                 irrigationCompleted[1] = true;
             if(nextIrrigationScheduled.equals(ELEVENPM) && (weather.getTodayPrecipitation() < precipitationThreshold && weather.getCurrentHumidity() < humidityThreshold))
                 irrigationCompleted[3] = true;
-            return "Irrigating for " + nextIrrigationScheduled;
+            return 3;
         }
         else
-            return "Irrigation will continue as scheduled for " + nextIrrigationScheduled.toString();
+            return 4;
     }
 
     public LocalTime getTime() {
@@ -70,5 +71,9 @@ public class Irrigation {
 
     public Boolean[] getIrrigationCompleted() {
         return irrigationCompleted;
+    }
+
+    public LocalTime getNextIrrigationScheduled() {
+        return nextIrrigationScheduled;
     }
 }
