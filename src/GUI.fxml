@@ -1,76 +1,110 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
 <?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="655.0" prefWidth="559.0" text="Solar Panel Management" textAlignment="CENTER" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
-  <content>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="596.0" prefWidth="607.0">
-         <children>
-            <Text layoutX="-1.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Location" textAlignment="CENTER" wrappingWidth="559.0">
-               <font>
-                  <Font size="23.0" />
-               </font>
-            </Text>
-            <Label layoutX="33.0" layoutY="46.0" prefHeight="28.0" prefWidth="72.0" text="Latitude: ">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <TextField fx:id="latitudeTextField" layoutX="115.0" layoutY="47.0" prefHeight="1.0" prefWidth="120.0" />
-            <Label layoutX="269.0" layoutY="46.0" prefHeight="29.0" prefWidth="88.0" text="Longitude:">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <TextField fx:id="longitudeTextField" layoutX="367.0" layoutY="48.0" prefHeight="25.0" prefWidth="127.0" />
-            <TextField fx:id="seasonTextField" layoutX="115.0" layoutY="87.0" prefHeight="25.0" prefWidth="121.0" />
-            <TextField fx:id="tiltTextField" layoutX="367.0" layoutY="87.0" prefHeight="25.0" prefWidth="129.0" />
-            <Label layoutX="33.0" layoutY="92.0" prefHeight="19.0" prefWidth="68.0" text="Season:">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="269.0" layoutY="92.0" text="Optimal Tilt: ">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="-1.0" layoutY="146.0" stroke="BLACK" strokeType="INSIDE" width="559.0" />
-            <Text layoutX="-1.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Weather" textAlignment="CENTER" wrappingWidth="559.0">
-               <font>
-                  <Font size="23.0" />
-               </font>
-            </Text>
-            <Label alignment="CENTER_RIGHT" layoutX="124.0" layoutY="234.0" prefHeight="28.0" prefWidth="164.0" text="Precipitation:">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <TextField fx:id="precipitationTextField" layoutX="294.0" layoutY="235.0" prefHeight="1.0" prefWidth="120.0" />
-            <Label alignment="CENTER_RIGHT" layoutX="124.0" layoutY="273.0" prefHeight="28.0" prefWidth="164.0" text="Humidity:">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <TextField fx:id="humidityTExtField" layoutX="294.0" layoutY="275.0" prefHeight="1.0" prefWidth="120.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="-1.0" layoutY="354.0" stroke="BLACK" strokeType="INSIDE" width="559.0" />
-            <Button fx:id="updateButton" layoutX="28.0" layoutY="439.0" mnemonicParsing="false" onMouseClicked="#setUpdateButtonClicked" prefHeight="102.0" prefWidth="199.0" text="Update">
-               <font>
-                  <Font size="28.0" />
-               </font>
-            </Button>
-            <Button fx:id="closeButton" layoutX="318.0" layoutY="439.0" mnemonicParsing="false" onMouseClicked="#setCloseButtonClicked" prefHeight="102.0" prefWidth="199.0" text="Close">
-               <font>
-                  <Font size="28.0" />
-               </font>
-            </Button>
-            <Label fx:id="lastUpdatedLabel" alignment="CENTER" layoutX="7.0" layoutY="329.0" prefHeight="15.0" prefWidth="542.0" textAlignment="CENTER" />
-         </children></AnchorPane>
-  </content>
-</TitledPane>
+<StackPane fx:id="parentPane" prefHeight="680.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Controller">
+  <children>
+    <AnchorPane fx:id="currentConditionPane" minHeight="0.0" minWidth="0.0" prefHeight="549.0" prefWidth="557.0">
+      <children>
+        <Text layoutX="-1.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Location" textAlignment="CENTER" wrappingWidth="559.0">
+          <font>
+            <Font size="23.0" fx:id="x2" />
+          </font>
+        </Text>
+        <Label layoutX="33.0" layoutY="46.0" prefHeight="28.0" prefWidth="72.0" text="Latitude: ">
+          <font>
+            <Font size="15.0" fx:id="x1" />
+          </font>
+        </Label>
+        <TextField fx:id="latitudeTextField" layoutX="115.0" layoutY="47.0" prefHeight="1.0" prefWidth="120.0" />
+        <Label font="$x1" layoutX="269.0" layoutY="46.0" prefHeight="29.0" prefWidth="88.0" text="Longitude:" />
+        <TextField fx:id="longitudeTextField" layoutX="367.0" layoutY="48.0" prefHeight="25.0" prefWidth="127.0" />
+        <TextField fx:id="seasonTextField" layoutX="115.0" layoutY="87.0" prefHeight="25.0" prefWidth="121.0" />
+        <TextField fx:id="tiltTextField" layoutX="367.0" layoutY="87.0" prefHeight="25.0" prefWidth="129.0" />
+        <Label font="$x1" layoutX="33.0" layoutY="92.0" prefHeight="19.0" prefWidth="68.0" text="Season:" />
+        <Label font="$x1" layoutX="269.0" layoutY="92.0" text="Optimal Tilt: " />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="-1.0" layoutY="146.0" stroke="BLACK" strokeType="INSIDE" width="559.0" />
+        <Text font="$x2" layoutX="-1.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Weather" textAlignment="CENTER" wrappingWidth="559.0" />
+        <Label alignment="CENTER_RIGHT" font="$x1" layoutX="124.0" layoutY="234.0" prefHeight="28.0" prefWidth="164.0" text="Precipitation:" />
+        <TextField fx:id="precipitationTextField" layoutX="294.0" layoutY="235.0" prefHeight="1.0" prefWidth="120.0" />
+        <Label alignment="CENTER_RIGHT" font="$x1" layoutX="124.0" layoutY="273.0" prefHeight="28.0" prefWidth="164.0" text="Humidity:" />
+        <TextField fx:id="humidityTExtField" layoutX="294.0" layoutY="275.0" prefHeight="1.0" prefWidth="120.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="-1.0" layoutY="354.0" stroke="BLACK" strokeType="INSIDE" width="559.0" />
+        <Button fx:id="updateButton" layoutX="195.0" layoutY="472.0" mnemonicParsing="false" onMouseClicked="#setUpdateButtonClicked" prefHeight="66.0" prefWidth="199.0" text="Update">
+          <font>
+            <Font size="16.0" fx:id="x3" />
+          </font>
+        </Button>
+        <Label fx:id="lastUpdatedLabel" alignment="CENTER" layoutX="8.0" layoutY="329.0" prefHeight="15.0" prefWidth="542.0" textAlignment="CENTER" />
+        <AnchorPane layoutX="1.0" layoutY="564.0" maxHeight="102.0" minHeight="102.0" prefHeight="102.0" prefWidth="557.0">
+          <children>
+            <Button fx:id="irrigationButton" font="$x3" layoutX="189.0" layoutY="18.0" onMouseClicked="#setIrrigationButtonClicked" prefHeight="66.0" prefWidth="180.0" text="Irigation" />
+            <Button fx:id="currentConditionsButton" font="$x3" layoutX="9.0" layoutY="18.0" onMouseClicked="#setCurrentConditionsButtonClicked" prefHeight="66.0" prefWidth="180.0" text="Current Conditions" />
+            <Button fx:id="closeButton" font="$x3" layoutX="369.0" layoutY="18.0" mnemonicParsing="false" onMouseClicked="#setCloseButtonClicked" prefHeight="66.0" prefWidth="179.99990000000253" text="Close" />
+          </children>
+        </AnchorPane>
+      </children>
+    </AnchorPane>
+    <AnchorPane fx:id="irrigationPane" maxHeight="549.0" maxWidth="-Infinity" minHeight="549.0" minWidth="-Infinity" prefHeight="549.0" prefWidth="557.0" StackPane.alignment="TOP_CENTER">
+      <children>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ebeeee" height="548.999977929685" layoutX="-3.0" layoutY="0.0" stroke="#fbfafa" strokeType="INSIDE" width="566.0001220703125" />
+        <CheckBox id="checkBox1" fx:id="fiveAmCheckBox" layoutX="28.0" layoutY="110.0" mnemonicParsing="false" prefWidth="19.0" text="" />
+        <Label layoutX="219.0" layoutY="25.0" text="Irrigation" textAlignment="CENTER">
+          <font>
+            <Font size="26.0" fx:id="x7" />
+          </font>
+        </Label>
+        <Label layoutX="219.0" layoutY="77.0" text="Schedule">
+          <font>
+            <Font size="18.0" fx:id="x4" />
+          </font>
+        </Label>
+        <Label font="$x4" layoutX="407.0" layoutY="76.0" text="Time" />
+        <Label font="$x4" layoutX="14.0" layoutY="77.0" text="Compleated" />
+        <CheckBox fx:id="elevenAmCheckBox" layoutX="27.0" layoutY="140.0" mnemonicParsing="false" prefWidth="19.0" text="" />
+        <CheckBox fx:id="fivePmCheckBox" layoutX="27.0" layoutY="170.0" mnemonicParsing="false" prefWidth="19.0" text="" />
+        <CheckBox fx:id="elevenPmCheckBox" layoutX="27.0" layoutY="200.0" mnemonicParsing="false" prefWidth="19.0" text="" />
+        <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" font="$x1" layoutX="394.0" layoutY="112.0" prefWidth="68.0" text="5 AM" textAlignment="RIGHT" />
+        <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" font="$x1" layoutX="394.0" layoutY="140.0" prefWidth="68.0" text="11 AM" textAlignment="RIGHT" />
+        <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" font="$x1" layoutX="395.0" layoutY="170.0" prefWidth="68.0" text="5 PM" textAlignment="RIGHT" />
+        <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" font="$x1" layoutX="395.0" layoutY="200.0" prefHeight="18.0" prefWidth="68.0" text="11 PM" textAlignment="RIGHT" />
+        <Label fx:id="fiveAmLabel" alignment="CENTER" labelFor="$fiveAmCheckBox" layoutX="161.0" layoutY="110.0" prefWidth="199.0001220703125" text="" textAlignment="CENTER">
+          <font>
+            <Font size="13.0" fx:id="x5" />
+          </font>
+        </Label>
+        <Label fx:id="fivePmLabel" alignment="CENTER" font="$x5" labelFor="$fivePmCheckBox" layoutX="161.0" layoutY="170.0" prefWidth="199.0001220703125" text="" textAlignment="CENTER" />
+        <Label fx:id="elevenPmLabel" alignment="CENTER" font="$x5" labelFor="$elevenPmCheckBox" layoutX="161.0" layoutY="200.0" prefWidth="199.0001220703125" text="" textAlignment="CENTER" />
+        <Label fx:id="elevenAmLabel" alignment="CENTER" font="$x5" labelFor="$elevenAmCheckBox" layoutX="161.0" layoutY="140.0" prefWidth="199.0001220703125" text="" textAlignment="CENTER" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="28.0" layoutX="0.0" layoutY="234.0" stroke="BLACK" strokeType="INSIDE" width="557.0" />
+        <Label layoutX="14.0" layoutY="299.0" text="Current Humidity:">
+          <font>
+            <Font size="14.0" fx:id="x6" />
+          </font>
+        </Label>
+        <Label fx:id="currentHumidityLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" font="$x6" layoutX="147.0" layoutY="299.0" prefWidth="68.0" text="" textAlignment="CENTER" />
+        <Label font="$x6" layoutX="302.0" layoutY="299.0" text="Humidity Threshold:" />
+        <Label id="currentHumidityLabel" fx:id="humidityThresholdLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" font="$x6" layoutX="452.0" layoutY="299.0" prefWidth="68.0" text="" textAlignment="CENTER" />
+        <Label font="$x6" layoutX="47.0" layoutY="343.0" text="Presipitation:" />
+        <Label id="currentHumidityLabel" fx:id="precipitationLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" font="$x6" layoutX="147.0" layoutY="343.0" prefWidth="68.0" text="" textAlignment="CENTER" />
+        <Label font="$x6" layoutX="277.0" layoutY="339.0" text="Presipitation Threshold:" />
+        <Label id="currentHumidityLabel" fx:id="precipitationThresholdLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" font="$x6" layoutX="452.0" layoutY="339.0" prefWidth="68.0" text="" textAlignment="CENTER" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="28.0" layoutX="-3.0" layoutY="385.0" stroke="BLACK" strokeType="INSIDE" width="557.0" />
+        <Label font="$x7" layoutX="216.0" layoutY="422.0" text="Comment" />
+        <Label fx:id="commentLabel" alignment="CENTER" contentDisplay="CENTER" font="$x6" layoutX="85.0" layoutY="464.0" prefHeight="50.0" prefWidth="389.0" text="" wrapText="true" />
+      </children>
+    </AnchorPane>
+  </children>
+</StackPane>

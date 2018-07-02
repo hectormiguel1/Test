@@ -9,16 +9,12 @@ public class GUI extends Application {
     public void start(Stage stage) throws Exception {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("GUI.fxml"));
-            stage.setScene(new Scene(root, 559, 600));
+            stage.setScene(new Scene(root, 558, 680));
             stage.setResizable(false);
             stage.setTitle("Solar Panel Control Center");
             stage.show();
-            do{
-                Runnable databaseUpload = new DBConnect();
-                new Thread(databaseUpload).start();
-            }while(stage.isShowing());
-        }catch (Exception e){
-            System.out.println("Test");
+        }catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

@@ -1,7 +1,11 @@
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import org.xml.sax.SAXException;
 
@@ -13,7 +17,7 @@ public class Controller {
 
     private Location location;
     private Weather weather;
-    private CalculateAngles calculateAngles;
+    private Irrigation irrigation;
 
     @FXML
     TextField latitudeTextField;
@@ -43,19 +47,83 @@ public class Controller {
     @FXML
     Label lastUpdatedLabel;
 
+    @FXML
+    Button currentConditionsButton;
+
+    @FXML
+    Button irrigationButton;
+
+    @FXML
+    AnchorPane currentConditionPane;
+
+    @FXML
+    AnchorPane irrigationPane;
+
+    @FXML
+    StackPane parentPane;
+
+    @FXML
+    CheckBox fivePmCheckBox;
+
+    @FXML
+    CheckBox elevenAmCheckBox;
+
+    @FXML
+    CheckBox fiveAmCheckBox;
+
+    @FXML
+    CheckBox elevenPmCheckBox;
+
+    @FXML
+    Label elevenPmLabel;
+
+    @FXML
+    Label elevenAmLabel;
+
+    @FXML
+    Label fiveAmLabel;
+
+    @FXML
+    Label fivePmLabel;
+
+    @FXML
+    Label precipitationLabel;
+
+    @FXML
+    Label precipitationThresholdLabel;
+
+    @FXML
+    Label currentHumidityLabel;
+
+    @FXML
+    Label humidityThresholdLabel;
+
+    @FXML
+    Label commentLabel;
+
+
+
     //inititalize values and API connections.
     public void initialize(){
+        currentConditionPane.toFront();
+        currentConditionsButton.underlineProperty().setValue(true);
+        irrigationPane.setOpacity(0);
         latitudeTextField.setDisable(true);
         longitudeTextField.setDisable(true);
         seasonTextField.setDisable(true);
         tiltTextField.setDisable(true);
         precipitationTextField.setDisable(true);
         humidityTExtField.setDisable(true);
+        fiveAmCheckBox.setDisable(true);
+        fivePmCheckBox.setDisable(true);
+        elevenAmCheckBox.setDisable(true);
+        elevenPmCheckBox.setDisable(true);
 
         try {
            location = new Location();
            weather = new Weather(location.getLatitude(), location.getLongitude());
-           calculateAngles = new CalculateAngles(location.getLatitude(), weather.getSeason());
+            CalculateAngles calculateAngles = new CalculateAngles(location.getLatitude(), weather.getSeason());
+            irrigation = new Irrigation(weather);
 
            //Initialize fields with initial values.
            latitudeTextField.setText(String.valueOf(location.getLatitude()));
@@ -71,6 +139,20 @@ public class Controller {
            humidityTExtField.setText(String.valueOf(weather.getCurrentHumidity()));
 
            lastUpdatedLabel.setText("Last Updated On: " + weather.getLastUpdated());
+
+           precipitationThresholdLabel.setText(irrigation.getPrecipitationThreshold().toString() + " inch");
+           humidityThresholdLabel.setText(irrigation.getHumidityThreshold().toString() + " %");
+           currentHumidityLabel.setText(weather.getCurrentHumidity() + " %");
+           precipitationLabel.setText(weather.getTodayPrecipitation() + " inch");
+           fiveAmLabel.setText(irrigation.getTodayDate());
+           fivePmLabel.setText(irrigation.getTodayDate());
+           elevenAmLabel.setText(irrigation.getTodayDate());
+           elevenPmLabel.setText(irrigation.getTodayDate());
+           fiveAmCheckBox.setSelected(irrigation.getIrrigationCompleted()[0]);
+           fivePmCheckBox.setSelected(irrigation.getIrrigationCompleted()[2]);
+           elevenAmCheckBox.setSelected(irrigation.getIrrigationCompleted()[1]);
+           elevenPmCheckBox.setSelected(irrigation.getIrrigationCompleted()[3]);
+           commentLabel.setText(irrigation.getComment());
        }catch (Exception e){
           if(e instanceof IOException){
               JOptionPane.showMessageDialog(null,"ERROR CONNECTING TO INTERNET", "ERROR CONNECTING",0);
@@ -120,7 +202,28 @@ public class Controller {
         stage.close();
     }
 
+    //changes which pane is bing displayed to irrigation pane
 
+    @FXML
+    public void setIrrigationButtonClicked(){
+        irrigationPane.toFront();
+        irrigationPane.setOpacity(1);
+        irrigationButton.underlineProperty().setValue(true);
+        currentConditionsButton.underlineProperty().setValue(false);
+        fiveAmCheckBox.setSelected(irrigation.getIrrigationCompleted()[0]);
+        fivePmCheckBox.setSelected(irrigation.getIrrigationCompleted()[2]);
+        elevenAmCheckBox.setSelected(irrigation.getIrrigationCompleted()[1]);
+        elevenPmCheckBox.setSelected(irrigation.getIrrigationCompleted()[3]);
+        commentLabel.setText(irrigation.getComment());
 
+    }
+
+    @FXML
+    public void setCurrentConditionsButtonClicked(){
+        irrigationPane.setOpacity(0);
+        currentConditionPane.toFront();
+        irrigationButton.underlineProperty().setValue(false);
+        currentConditionsButton.underlineProperty().setValue(true);
+    }
 
 }
